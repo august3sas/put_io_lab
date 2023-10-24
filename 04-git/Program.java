@@ -5,5 +5,6 @@ public class Program {
         Weather w1=new Weather(f1);
         System.out.println(w1.ActualTemperature());
         assert "10.67".equals(w1.ActualTemperature());
+        System.out.println("This was created on another branch!");
     }
 }
