@@ -50,14 +50,21 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC2](#uc2): Otrzymanie pieniędzy i informacji od zwycięzcy aukcji
+* [UC3](#uc3): Wysłanie produktu
 
-[Kupujący](#ac2)
-* ...
+[Kupujący](#ac2):
+* [UC4](#uc4): Znalezienie produktu
+* [UC5](#uc5): Wygranie licytacji
+* [UC6](#uc6): Przekazanie należności sprzedającemu
+* [UC7](#uc7): Otrzymanie produktu
+
 
 ---
 <a id="uc1"></a>
 ### UC1: Wystawienie produktu na aukcję
+
+
 
 **Aktorzy:** [Sprzedający](#ac1)
 
@@ -77,21 +84,106 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Otrzymanie pieniędzy i informacji od zwycięzcy aukcji
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. System informuje o zakończeniu aukcji
+2. [Sprzedający](#ac1) sprawdza szczegóły zakończonej aukcji
+3. System informuje o statusie transakcji i danych [Kupującego](#ac2)
+4. [Sprzedający](#ac1) czeka na otrzymanie należności
+5. [Sprzedający](#ac1) otrzymuje należność
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+4.A. Należność nie dotarła
+* 4.A.1. Od zakończenia aukcji minął odpowiednio długi czas
+* 4.A.1.1 Skontaktuj się z supportem
+* 4.A.2 Od zakończenia aukcji nie minął odpowiednio długi czas
+* 4.A.2.1 Przejdź do punktu 4
+
+---
+<a id="uc3"></a>
+### UC3: Wysłanie produktu
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System zwraca dane [Kupującego](#ac2)
+2. [Sprzedający](#ac1) wysyła produkt na podany adres
+
+---
+<a id="uc4"></a>
+### UC4: Znalezienie produktu
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) wyszukuje [produkt](#bo2)
+2. System zwraca listę [produktów](#bo2)
+3. [Kupujący](#ac2) przegląda listę i wybiera [produkt](#bo2)
+4. System zwraca informację o [produkcie](#bo2) i [sprzedawcy](#ac1)
+5. [Kupujący](#ac2) podejmuje decyzję o uczestnictwie w aukcji
+
+---
+<a id="uc5"></a>
+### UC5: Wygranie licytacji
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System zwraca aktualną cenę aukcji
+2. [Kupujący](#ac2) przebija cenę aukcji
+3. System aktualizuje cenę aukcji
+4. System informuje [Kupującego](#ac2) o wygraniu licytacji i zakończeniu aukcji
+
+**Scenariusze alternatywne:** 
+
+2.A Ktoś przebija cenę wystawioną przez [kupującego](#ac2)
+* 2.A.1 Wróć do punktu 2
+
+2.B [Kupujący](#ac2) nie ma wystarczająco pieniędzy by przebić cenę aukcji
+* 2.B.A [Kupujący](#ac2) rezygnuje z aukcji
+* 2.B.B [Kupujący](#ac2) doładowuje konto
 
 ---
 
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+<a id="uc6"></a>
+### UC6: Przekazanie należności sprzedającemu
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System informuje [Kupującego](#ac2) o konieczności przekazania należności i sprawdzenia poprawności danych do wysyłki
+2. [Kupujący](#ac2) sprawdza poprawność danych
+3. [Kupujący](#ac2) wysyła środki do [Sprzedającego](#ac1)
+4. System przekazuje [sprzedającemu](#ac1) i [kupującemu](#ac2) potwierdzenie wysłania środków
+5. System pobiera środki z konta [kupującego](#ac2) i wpłaca na konto [sprzedającego](#ac1)
+
+**Scenariusze alternatywne:** 
+
+2.A Dane nie są poprawne
+* 2.A.1 [Kupujący](#ac2) wprowadza do systemu poprawne dane
+* 2.A.2 Wróć do punktu 2
+
+---
+<a id="uc7"></a>
+### UC7: Otrzymanie produktu
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) sprawdza zgodność [produktu](#bo2) z informacjami podanymi w aukcji
+
+**Scenariusze alternatywne:** 
+
+1.A [Produkt](#bo2) nie zgadza się z opisem w aukcji
+* 1.A.1 Skontaktuj się z supportem i sprzedającym
+
+---
+
+## Obiekty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
 
 ### BO1: Aukcja
 
